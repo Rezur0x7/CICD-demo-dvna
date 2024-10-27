@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Generate package-lock.json file
         run: |
-          npm install --package-lock
+          npm install
           ls -l
       - name: install dependencies
         run: npm ci
