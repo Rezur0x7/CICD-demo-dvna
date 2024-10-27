@@ -1,0 +1,24 @@
+name: sast-njsscan
+on:
+  push:
+    branches: [ master ]
+jobs:
+  njsscan:
+    runs-on: ubuntu-latest
+    name: njsscan code scanning
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2
+    - name: njsscan install
+      run: pip install njsscan
+    - name: njsscan run
+      run: |
+        njsscan --json -o results.json . | true
+        njsscan --sarif -o results.sarif . | true
+    - name: Upload SARIF file to Github
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: results.sarif
+    - name: Upload JSON file to AppsecEngineer Listener
+      run: |
+        curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.json" http://r65cu0bjjwmgh6f0b1svw.appsecengineer.training:8880/callback | true
