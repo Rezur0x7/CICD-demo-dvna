@@ -12,7 +12,6 @@ jobs:
     - name: Generate package-lock.json file
       run: |
         npm install
-        ls -l
     - name: install dependencies
       run: npm ci
     - name: npm audit JSON report
@@ -32,7 +31,6 @@ jobs:
       - name: Generate package-lock.json file
         run: |
           npm install
-          ls -l
       - name: install dependencies
         run: npm ci
       - name: npm audit add to issues
