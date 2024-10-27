@@ -1,0 +1,36 @@
+name: sca-npmaudit
+on:
+  push:
+    branches: [ master ]
+jobs:
+  npm-audit-manual:
+    runs-on: ubuntu-latest
+    name: npm audit manual
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v3
+    - name: install dependencies
+      run: npm ci
+    - name: npm audit JSON report
+      run: |
+        npm audit --json > npm-audit-report.json | true
+    - name: Upload JSON file to AppsecEngineer Listener
+      run: |
+        curl -X POST -H "Content-Type: multipart/form-data" -F "file=@npm-audit-report.json" http://5axu311349t2cdf2qaizp.appsecengineer.training:8880/callback | true
+
+  npm-audit-integrated:
+    permissions: write-all
+    name: npm audit integrated
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: npm ci
+      - name: npm audit add to issues 
+        uses: oke-py/npm-audit-action@v2
+        with:
+          audit_level: none
+          github_token: ${{ secrets.GH_TOKEN }}
+          issue_labels: vulnerability,test
+          dedupe_issues: true
