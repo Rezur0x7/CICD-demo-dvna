@@ -10,7 +10,9 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v3
     - name: Generate package-lock.json file
-      run: npm install --package-lock
+      run: |
+        npm install --package-lock
+        ls -l
     - name: install dependencies
       run: npm ci
     - name: npm audit JSON report
@@ -28,7 +30,9 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v3
       - name: Generate package-lock.json file
-        run: npm install --package-lock
+        run: |
+          npm install --package-lock
+          ls -l
       - name: install dependencies
         run: npm ci
       - name: npm audit add to issues
