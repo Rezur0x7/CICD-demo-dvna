@@ -9,6 +9,8 @@ jobs:
     steps:
     - name: Checkout the code
       uses: actions/checkout@v3
+    - name: build container
+      run: docker build -t dvna-sca:${{ github.sha }} .
     - name: install dependencies
       run: npm ci
     - name: npm audit JSON report
@@ -25,6 +27,8 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
+      - name: build container
+        run: docker build -t dvna-sca:${{ github.sha }} .
       - name: install dependencies
         run: npm ci
       - name: npm audit add to issues
