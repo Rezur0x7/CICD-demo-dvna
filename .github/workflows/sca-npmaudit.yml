@@ -36,7 +36,7 @@ jobs:
       - name: npm audit add to issues
         uses: oke-py/npm-audit-action@v2
         with:
-          audit_level: low
+          audit_level: none
           github_token: ${{ secrets.GH_TOKEN }}
           issue_labels: vulnerability,test
           dedupe_issues: true
