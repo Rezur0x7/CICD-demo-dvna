@@ -10,7 +10,7 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v3
     - name: install dependencies
-      run: npm ci
+      run: npm install
     - name: npm audit JSON report
       run: |
         npm audit --json > npm-audit-report.json | true
@@ -26,8 +26,8 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v3
       - name: install dependencies
-        run: npm ci
-      - name: npm audit add to issues 
+        run: npm install
+      - name: npm audit add to issues
         uses: oke-py/npm-audit-action@v2
         with:
           audit_level: none
