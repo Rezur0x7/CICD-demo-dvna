@@ -33,7 +33,6 @@ else:
     print('Login Failed !!')
 
 # ZAP Operations
-
 zap = ZAP(proxies={'http': 'http://localhost:8090',
                    'https': 'http://localhost:8090'})
 
