@@ -1,7 +1,6 @@
 import requests
 from zapv2 import ZAPv2 as ZAP
 import time
-import datetime
 from os import getcwd
 
 target_url = "http://localhost:9090"
