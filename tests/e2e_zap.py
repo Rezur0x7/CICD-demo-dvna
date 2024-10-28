@@ -29,7 +29,8 @@ if 'learn' in login.text:  # if login is successful
     data = {"name": "test"}
     response = sess.post(target_url+'/app/products',data= data, proxies=proxies, verify=False) # product search functionality
     print("product search completed" if "200" == str(response.status_code) else "[!] failed")
-
+else:
+    print('Login Failed !!')
 
 # ZAP Operations
 
