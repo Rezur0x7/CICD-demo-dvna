@@ -19,15 +19,16 @@ if 'learn' in login.text:  # if login is successful
     print('LoggedIn')
     # run operations
     data = {"login": "cicd"}
-    response = sess.post(target_url+'/app/usersearch',data= data, proxies=proxies, verify=False)
+    response = sess.post(target_url+'/app/usersearch',data= data, proxies=proxies, verify=False) # user search functionality
+    print("user search completed" if "200" == str(response.status_code) else "[!] failed")
 
-    search = {'search': 'dleon'}
-    search_customer_username = requests.post(
-        target_url + '/search', json=search, proxies=proxies, headers=auth_header, verify=False)
-    if search_customer_username.status_code == 200:
-        print("Search Customer POST Response")
-        print(search_customer_username.json())
-        print()
+    data = {"address": "127.0.0.1"}
+    response = sess.post(target_url+'/app/ping',data= data, proxies=proxies, verify=False) # connectivity check functionality
+    print("connectivity check completed" if "200" == str(response.status_code) else "[!] failed")
+
+    data = {"name": "test"}
+    response = sess.post(target_url+'/app/products',data= data, proxies=proxies, verify=False) # product search functionality
+    print("product search completed" if "200" == str(response.status_code) else "[!] failed")
 
 
 # ZAP Operations
