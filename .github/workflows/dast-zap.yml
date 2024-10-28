@@ -19,10 +19,8 @@ jobs:
           pip install requests python-owasp-zap-v2.4
       - name: Get working directory
         run: echo $(PWD)
-      - name: Build Image
-        run: |
-          docker build -t dvna-zap .
-          docker image ls -a
+      - name: Run App
+        run: docker run --name dvna-zap -p 9090:9090 -d appsecco/dvna:sqlite
       - name: Setup OWASP ZAP
         run: |
           mkdir -p ./zap
@@ -43,8 +41,6 @@ jobs:
           chmod +x start-gui-zap
           chmod +x stop-zap
           echo $pwd
-      - name: Run Docker Container
-        run: docker run --name dvna -d -p 9090:9090 dvna-zap
       - name: Run ZAP Daemon
         run: ./zap/ZAP_2.15.0/zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.addrs.addr.name=".*" -config api.addrs.addr.regex=true -config api.disablekey=true > /dev/null &
       - name: Sleep for a bit
