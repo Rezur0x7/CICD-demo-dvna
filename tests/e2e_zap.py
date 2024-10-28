@@ -31,6 +31,7 @@ if 'learn' in login.text:  # if login is successful
     print("product search completed" if "200" == str(response.status_code) else "[!] failed")
 else:
     print('Login Failed !!')
+    print(login.text)
 
 # ZAP Operations
 zap = ZAP(proxies={'http': 'http://localhost:8090',
