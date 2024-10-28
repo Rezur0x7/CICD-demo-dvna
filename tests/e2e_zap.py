@@ -16,7 +16,7 @@ data = {"username": "cicd", "password": "cicd"}
 login = sess.post(target_url+'/login', data= data, allow_redirects=False, proxies=proxies, verify=False) # login test account
 
 if 'learn' in login.text:  # if login is successful
-    print('LoggedIn')
+    print('Successful Login')
     # run operations
     data = {"login": "cicd"}
     response = sess.post(target_url+'/app/usersearch',data= data, proxies=proxies, verify=False) # user search functionality
