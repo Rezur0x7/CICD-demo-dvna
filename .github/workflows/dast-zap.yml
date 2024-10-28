@@ -50,7 +50,7 @@ jobs:
       - name: Sleep for a bit
         uses: jakejarvis/wait-action@master
         with:
-          time: '20s'
+          time: '30s'
       - name: Run Test Automation with ZAP
         run: |
           cd ./tests/
