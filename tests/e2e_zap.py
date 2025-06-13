@@ -11,7 +11,7 @@ proxies = {
 }
 
 data = {"name": "cicd", "username": "cicd", "email": "cicd@test.org", "password": "cicd", "cpassword": "cicd"}
-response = requests.post(target_url+'/register', data=data, proxies=proxies, verify=False) #register test account
+response = requests.post(target_url+'/register', data=data, proxies=proxies, verify=False) #reg test account
 data = {"username": "cicd", "password": "cicd"}
 login = sess.post(target_url+'/login', data= data, allow_redirects=False, proxies=proxies, verify=False) # login test account
 
