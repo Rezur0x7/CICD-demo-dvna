@@ -52,7 +52,7 @@ jobs:
           cd ./tests/
           python e2e_zap.py
       - name: Upload HTML Report Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Zap-scan-report
           path: ./tests/dast_report_html
